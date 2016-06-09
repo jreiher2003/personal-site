@@ -32,4 +32,4 @@ def projects():
     # app.debug()
 app.secret_key = "super"
 app.debug = False 
-app.run(host="0.0.0.0", port=5005, debug=False)
+# app.run(host="0.0.0.0", port=5005, debug=False)
