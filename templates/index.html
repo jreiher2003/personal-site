@@ -39,24 +39,27 @@
 
                     <p>My dream job would be to have a job programming that would allow me to live in Costa Rica.</p>  
 
-                    <p>Here is a <a href="#"> portfolio</a> of some skills that I have.&nbsp;  Please check out my <a href="https://github.com/jreiher2003" target="_blank">github</a>.</p>
+                    <p>Here is a <a href="{{ url_for('projects') }}"> portfolio</a> of some skills that I have.&nbsp;  Please check out my <a href="https://github.com/jreiher2003" target="_blank">github</a>.</p>
                     <p> You can contact me at <a href="me@jeffreiher.com">me@jeffreiher.com</a>. &nbsp;My latest resume is available <a href="#">here</a>.</p>
                     <hr>
-                      <ul class="list-inline">
+                      <ul class="list-inline social">
                         <li style="padding-left:0px;"><a href="https://github.com/jreiher2003" target="_blank" class="git"><i class="fa fa-github"></i></a></li>
                         <li><a href="https://www.linkedin.com/pub/jeff-reiher/48/9b7/132" target="_blank" class="linkedin"><i class="fa fa-linkedin"></i></li></a></li>
                         <li><a href="https://twitter.com/BigJeffDogg" target="_blank" class="twitter"><i class="fa fa-twitter"></i></a></li>
                         <li><a href="https://www.facebook.com/jeff.reiher" target="_blank" class="facebook"><i class="fa fa-facebook"></i></a></li>
                     </ul> 
                     <hr>
+            <blockquote>
+                <p>{{ QUOTE[0] }}</p>
+               <footer><cite>{{ QUOTE[1] }}</cite></footer>
+            </blockquote>
                 </div>
             </div>
         </div>
-        <div class="text-center">
-            <blockquote>
-                <cite>{{ quote }}</cite>
-            </blockquote>
-        </div>
+
+       
+        
+        
                    
         
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>

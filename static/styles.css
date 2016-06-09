@@ -9,6 +9,11 @@ img {
     padding-right: 30px;
     border-radius: 15%;
 }
+.img-bor {
+    border: 1px solid #eee;
+    padding-right: 0px;
+    border-radius: 5%;
+}
 p {
     font-size: 18px;
     line-height: 32px;
@@ -20,7 +25,12 @@ i.fa {
 ul {
     text-align: center;
 }
-ul li {
+.social li {
     margin-right: 40px;
     text-align: center;
+}
+
+.projects {
+    margin-right: 0;
+    text-align: left;
 }
