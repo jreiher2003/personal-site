@@ -5,7 +5,9 @@ h1 {
     margin-top: 70px;
 }
 img {
+    height: 100px;
     padding-right: 30px;
+    border-radius: 15%;
 }
 p {
     font-size: 18px;
