@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, redirect
 import random 
 import requests
 
@@ -27,9 +27,14 @@ def projects():
         QUOTE=QUOTE
         )
 
+@app.route("/resume")
+def show_resume():
+    # with open("/static/JeffreyReiherResume.pdf") as f:
+    #     content = f.read()
+    return render_template("JeffreyReiherResume.html")
 
 # if __name__ == "__main__":
     # app.debug()
 app.secret_key = "super"
 app.debug = False 
-# app.run(host="0.0.0.0", port=5005, debug=False)
+app.run(host="0.0.0.0", port=5005, debug=False)
