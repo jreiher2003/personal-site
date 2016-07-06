@@ -1,2 +1,4 @@
 env/
 *.pyc
+Procfile 
+secret_key.txt
