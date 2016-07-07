@@ -11,4 +11,5 @@ os.environ['APP_SETTINGS'] = 'config.ProductionConfig'
 os.environ['SECRET_KEY'] = '\x86)U\xe5\xf8\xed\x99\xc6M\xb7?\xda<R\xcd\xd2\x8f\xab\x9e\xcc0\x8e\xa1'
 
 from app import app as application
-#app.config.from_object(os.environ['APP_SETTINGS'])
+#application.config.from_object(os.environ['APP_SETTINGS'])
+#application.secret_key = os.environ['SECRET_KEY']
