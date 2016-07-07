@@ -7,4 +7,4 @@ logging.basicConfig(stream=sys.stderr)
 sys.path.insert(0,"/var/www/personalsite/")
 
 
-from app import app 
+from personalsite import views
