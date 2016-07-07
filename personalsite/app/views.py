@@ -1,8 +1,8 @@
-from flask import Flask, render_template, url_for, redirect
+from app import app
+from flask import render_template, url_for, redirect
 import random 
 import requests
 
-app = Flask(__name__)
 
 a = {"I want to put a ding in the universe.": "Steve Jobs", "As we express our gratitude, we must never forget that the highest appreciation is not to utter words, but to live by them.": "John F. Kennedy", "I know where I'm going and I know the truth, and I don't have to be what you want me to be. I'm free to be what I want.": "Muhammand Ali", "Age is whatever you think it is. You are as old as you think you are.": "Muhammand Ali", "Always be yourself, express yourself, have faith in yourself, do not go out and look for a successful personality and duplicate it.": "Bruce Lee", "The starting point of all achievement is desire.": "Napoleon Hill", "Success consists of going from failure to failure without loss of enthusiasm.": "Winston Churchill"}
 
