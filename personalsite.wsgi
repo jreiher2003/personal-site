@@ -12,6 +12,6 @@ os.environ['SECRET_KEY'] = '\x86)U\xe5\xf8\xed\x99\xc6M\xb7?\xda<R\xcd\xd2\x8f\x
 
 
 from app import app as application
-#application.config.from_object(os.environ['APP_SETTINGS'])
-#application.secret_key = os.environ['SECRET_KEY']
+
+#application.secret_key = 'add your secret key'
 
