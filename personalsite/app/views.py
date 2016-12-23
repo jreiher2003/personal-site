@@ -1,4 +1,6 @@
 import random
+from datetime import datetime
+import pytz
 import requests
 from app import app
 from flask import render_template, url_for, redirect
@@ -15,25 +17,26 @@ def quotes():
     quote = requests.get("http://quotes.stormconsultancy.co.uk/quotes.json", headers=headers).json()
     return quote[rand_pic(len(quote))]
 
-
 def profiles():
     return requests.get("https://api.github.com/users/jreiher2003", headers=headers).json()
 profile = profiles()
 
-APIKEY = "APPID="+BaseConfig.OPEN_WEATHER_MAP
-URL = "http://api.openweathermap.org/data/2.5/"
 def find_current_weather():
-    cur = "weather?zip=34224,us&units=imperial&"
+    APIKEY = "APPID="+BaseConfig.OPEN_WEATHER_MAP
+    URL = "http://api.openweathermap.org/data/2.5/"
+    cur = "weather?id=4154465,us&units=imperial&"
     m = URL + cur + APIKEY
     return requests.get(m, headers=headers).json()
-weather = find_current_weather()
 
 @app.route('/')
 def hello_world():
+    now_utc = datetime.now(pytz.timezone('UTC'))
+    dt = now_utc.astimezone(pytz.timezone('US/Eastern'))
+    weather = find_current_weather()
     quote = quotes()
-    print find_current_weather()
     return render_template(
-        "index.html", 
+        "index.html",
+        dt = dt, 
         profile=profile, 
         quote=quote,
         weather=weather)
