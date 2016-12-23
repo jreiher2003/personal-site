@@ -14,7 +14,7 @@ def rand_pic(len_object):
 def quotes():
     quote = requests.get("http://quotes.stormconsultancy.co.uk/quotes.json", headers=headers).json()
     return quote[rand_pic(len(quote))]
-quote = quotes()
+
 
 def profiles():
     return requests.get("https://api.github.com/users/jreiher2003", headers=headers).json()
@@ -30,6 +30,7 @@ weather = find_current_weather()
 
 @app.route('/')
 def hello_world():
+    quote = quotes()
     print find_current_weather()
     return render_template(
         "index.html", 
@@ -39,6 +40,7 @@ def hello_world():
 
 @app.route("/projects")
 def projects():
+    quote = quotes()
     puppy = requests.get("https://api.github.com/repos/jreiher2003/Puppy-Adoption", headers=headers).json()
     portfolio = requests.get("https://api.github.com/repos/jreiher2003/Jeff-Portfolio", headers=headers).json()
     wiki = requests.get("https://api.github.com/repos/jreiher2003/Wiki", headers=headers).json()
