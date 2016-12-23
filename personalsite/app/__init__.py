@@ -9,6 +9,6 @@ from app import views
 @app.template_filter()
 def date_s(value):
     """convert a datetime object to a formated string """
-    return value.strftime("%A the %d of %B %Y %I:%M %p")
+    return value.strftime("%A, %d %b %Y %I:%M %p")
 
 app.jinja_env.filters["date_s"] = date_s

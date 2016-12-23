@@ -24,7 +24,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    {{ dt|date_s}}
+                    {{ dt|date_s}}<br>
                     {{ weather.name }}, FL. there are {{ weather.weather[0].description }}
                     {% if weather.weather[0].main == "Clear" %}
                     <i class="fa fa-sun-o" aria-hidden="true"></i> and its {{ weather.main.temp }}&#176;F outside.
