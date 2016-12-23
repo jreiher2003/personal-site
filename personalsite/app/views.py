@@ -1,20 +1,44 @@
+import random
+import requests
 from app import app
 from flask import render_template, url_for, redirect
-import random 
-import requests
+from config import BaseConfig 
 
+def header():
+    return {"Content-Type": "application/json", "User-Agent": "jreiher2003"}
+headers = header()
 
-a = {"I want to put a ding in the universe.": "Steve Jobs", "As we express our gratitude, we must never forget that the highest appreciation is not to utter words, but to live by them.": "John F. Kennedy", "I know where I'm going and I know the truth, and I don't have to be what you want me to be. I'm free to be what I want.": "Muhammand Ali", "Age is whatever you think it is. You are as old as you think you are.": "Muhammand Ali", "Always be yourself, express yourself, have faith in yourself, do not go out and look for a successful personality and duplicate it.": "Bruce Lee", "The starting point of all achievement is desire.": "Napoleon Hill", "Success consists of going from failure to failure without loss of enthusiasm.": "Winston Churchill"}
+def rand_pic(len_object):
+    return random.randint(1,len_object+1)
+
+def quotes():
+    quote = requests.get("http://quotes.stormconsultancy.co.uk/quotes.json", headers=headers).json()
+    return quote[rand_pic(len(quote))]
+quote = quotes()
+
+def profiles():
+    return requests.get("https://api.github.com/users/jreiher2003", headers=headers).json()
+profile = profiles()
+
+APIKEY = "APPID="+BaseConfig.OPEN_WEATHER_MAP
+URL = "http://api.openweathermap.org/data/2.5/"
+def find_current_weather():
+    cur = "weather?zip=34224,us&units=imperial&"
+    m = URL + cur + APIKEY
+    return requests.get(m, headers=headers).json()
+weather = find_current_weather()
 
 @app.route('/')
 def hello_world():
-    QUOTE = random.choice(list(a.items()))
-    return render_template("index.html", QUOTE=QUOTE)
+    print find_current_weather()
+    return render_template(
+        "index.html", 
+        profile=profile, 
+        quote=quote,
+        weather=weather)
 
 @app.route("/projects")
 def projects():
-    QUOTE = random.choice(list(a.items()))
-    headers = {"Content-Type": "application/json", "User-Agent": "jreiher2003"}
     puppy = requests.get("https://api.github.com/repos/jreiher2003/Puppy-Adoption", headers=headers).json()
     portfolio = requests.get("https://api.github.com/repos/jreiher2003/Jeff-Portfolio", headers=headers).json()
     wiki = requests.get("https://api.github.com/repos/jreiher2003/Wiki", headers=headers).json()
@@ -25,12 +49,14 @@ def projects():
         portfolio=portfolio,
         wiki=wiki,
         composite=composite,
-        QUOTE=QUOTE
+        quote = quote
         )
 
 @app.route("/resume")
 def show_resume():
-    return render_template("JeffreyReiherResume.html")
+    return render_template(
+        "JeffreyReiherResume.html"
+        )
 
 
 

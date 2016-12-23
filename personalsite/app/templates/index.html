@@ -26,8 +26,7 @@
                     
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">            
-                            <!-- <img class="pull-right" src="http://placehold.it/100x100"> -->
-                            <h1><img src="{{ url_for('static', filename='twitter_pro_pic.jpg') }}">Hey there, I'm Jeff Reiher</h1> 
+                            <h1><img src="{{ profile.avatar_url }}">Hey there, I'm Jeff Reiher</h1> 
                         </div>
                     </div>
                             
@@ -35,23 +34,23 @@
                 <div class="col-md-8 col-md-offset-2">
                      <p>I'm a self taught programmer currently looking for a job in the technical field.</p>
 
-                    <p>Previously, in my former (non-programming) life I was in sales.&nbsp;  After living in <a href="https://en.wikipedia.org/wiki/Costa_Rica">Costa Rica</a> for 5 years and working for different sports books I saw lots of opportunity's for people who knew how to code.</p>  
+                    <p>Previously, in my former (non-programming) life I was in sales.&nbsp;  Living in <a href="https://en.wikipedia.org/wiki/Costa_Rica">Costa Rica</a> for 5 years was a life changing experience. I became interested in programming and saw lots of opportunity's for people who knew how to code.</p>  
 
-                    <p>My dream job would be to have a job programming that would allow me to live in Costa Rica.</p>  
+                    <p>I wake up everyday with ambition to be the best programmer I can be.</p>  
 
-                    <p>Here is a <a href="{{ url_for('projects') }}"> portfolio</a> of some skills that I have.&nbsp;  Please check out my <a href="https://github.com/jreiher2003" target="_blank">github</a>.</p>
-                    <p> You can contact me at <a href="me@jeffreiher.com">me@jeffreiher.com</a>. &nbsp;My latest resume is available <a href="{{ url_for('show_resume') }}">here</a>.</p>
+                    <p>Here is a <a href="{{ url_for('projects') }}"> portfolio</a> of some skills that I have.&nbsp;<small class="text-muted">(I try to keep it updated.)</small><br>  Please check out my <a href="{{ profile.url }}" target="_blank">github</a>.</p>
+                    <p> You can contact me at <a href="{{ profile.email }}">me@jeffreiher.com</a>. &nbsp;My latest resume is available <a href="{{ url_for('show_resume') }}">here</a>.</p>
                     <hr>
                       <ul class="list-inline social">
-                        <li style="padding-left:0px;"><a href="https://github.com/jreiher2003" target="_blank" class="git"><i class="fa fa-github"></i></a></li>
+                        <li style="padding-left:0px;"><a href="{{ profile.url }}" target="_blank" class="git"><i class="fa fa-github"></i></a></li>
                         <li><a href="https://www.linkedin.com/pub/jeff-reiher/48/9b7/132" target="_blank" class="linkedin"><i class="fa fa-linkedin"></i></li></a></li>
-                        <li><a href="https://twitter.com/BigJeffDogg" target="_blank" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://twitter.com/JeffreyReiher" target="_blank" class="twitter"><i class="fa fa-twitter"></i></a></li>
                         <li><a href="https://www.facebook.com/jeff.reiher" target="_blank" class="facebook"><i class="fa fa-facebook"></i></a></li>
                     </ul> 
                     <hr>
                     <blockquote>
-                        <p>{{ QUOTE[0] }}</p>
-                       <footer><cite>{{ QUOTE[1] }}</cite></footer>
+                        <p>{{ quote.quote }}</p>
+                       <footer><cite>{{ quote.author }}</cite></footer>
                     </blockquote>
                 </div>
             </div>
