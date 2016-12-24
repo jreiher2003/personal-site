@@ -21,29 +21,43 @@
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-md-12 text-center">
-                    <b>{{ weather.name }}, FL.</b> <i>{{ weather.weather[0].description }}</i>
-                    {% if sunrise < dt and dt <= sunset  %}
-                        {% if weather.weather[0].main == "Clear" %}
-                            <i class="fa fa-sun-o" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
-                            {% elif weather.weather[0].main == "Clouds" %}
-                            <i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
+                <div class="col-md-8 col-md-offset-2">
+                    <span class="pull-left">
+                        <b>{{ weather.name }}, FL.</b> <i>{{ weather.weather[0].description }}</i>
+                        {% if sunrise < dt and dt <= sunset  %}
+                            {% if weather.weather[0].main == "Clear" %}
+                                <i class="fa fa-sun-o" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
+                                {% elif weather.weather[0].main == "Clouds" %}
+                                <i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
+                            {% endif %}
+                        {% elif dt > sunset %}
+                            {% if weather.weather[0].main == "Clear" %}
+                                <i class="fa fa-moon-o" aria-hidden="true"></i><i class="fa fa-sun-o" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
+                                {% elif weather.weather[0].main == "Clouds" %}
+                                <i class="fa fa-moon-o" aria-hidden="true"></i><i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
+                            {% endif %}
                         {% endif %}
-                    {% elif dt > sunset %}
-                        {% if weather.weather[0].main == "Clear" %}
-                            <i class="fa fa-moon-o" aria-hidden="true"></i><i class="fa fa-sun-o" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
-                            {% elif weather.weather[0].main == "Clouds" %}
-                            <i class="fa fa-moon-o" aria-hidden="true"></i><i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
-                        {% endif %}
-                    {% endif %}
+                    </span>
+                    <span class="pull-right">
+                        <b>{{ user_weather.name }}, FL.</b> <i>{{ user_weather.weather[0].description }}</i>
+                            {% if user_weather.weather[0].main == "Clear" %}
+                                <i class="fa fa-sun-o" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside.
+                                {% elif user_weather.weather[0].main == "Clouds" %}
+                                <i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside.
+                            {% endif %}
+                    </span>
                 </div>
                 <div class="col-md-8 col-md-offset-2">
                     <blockquote>
                         <p class="quote">{{ quote.quote }}</p>
                        <footer><cite class="quote">{{ quote.author }}</cite></footer>
                     </blockquote><hr> 
-                    <h1><img src="{{ profile.avatar_url }}">Hey there, I'm Jeff Reiher</h1>
-                    <small class="text-muted">{{ dt|date_s}}</small>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img class="pull-left img-responsive" src="{{ profile.avatar_url }}"><h1>Hey there, I'm Jeff Reiher <br><small style="font-size:14px;"><i>Thanks for visiting my page from {{ user_loc.city }}, {{ user_loc.region }} {{ user_loc.postal }} {{ user_loc.country }}</i></small></h1>
+                            <small class="text-muted">{{ dt|date_s}}</small>
+                        </div>
+                    </div>
                 </div>
             </div>
                             
