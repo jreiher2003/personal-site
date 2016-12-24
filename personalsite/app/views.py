@@ -21,6 +21,17 @@ def profiles():
     return requests.get("https://api.github.com/users/jreiher2003", headers=headers).json()
 profile = profiles()
 
+def find_sunset_sunrise():
+    local_tz = pytz.timezone("US/Eastern")
+    weather = find_current_weather()
+    s = weather['sys']['sunset']
+    r = weather['sys']['sunrise']
+    ss = datetime.fromtimestamp(s).replace(tzinfo=pytz.utc)
+    rr = datetime.fromtimestamp(r).replace(tzinfo=pytz.utc)
+    sunset = ss.astimezone(pytz.timezone('US/Eastern'))
+    sunrise = rr.astimezone(pytz.timezone('US/Eastern'))
+    return sunrise,sunset
+
 def find_current_weather():
     APIKEY = "APPID="+BaseConfig.OPEN_WEATHER_MAP
     URL = "http://api.openweathermap.org/data/2.5/"
@@ -33,13 +44,18 @@ def hello_world():
     now_utc = datetime.now(pytz.timezone('UTC'))
     dt = now_utc.astimezone(pytz.timezone('US/Eastern'))
     weather = find_current_weather()
+    sunrise,sunset = find_sunset_sunrise()
+    print sunrise,sunset
     quote = quotes()
     return render_template(
         "index.html",
         dt = dt, 
         profile=profile, 
         quote=quote,
-        weather=weather)
+        weather=weather,
+        sunrise=sunrise,
+        sunset=sunset
+        )
 
 @app.route("/projects")
 def projects():

@@ -24,11 +24,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <b>{{ weather.name }}, FL.</b> there are <i>{{ weather.weather[0].description }}</i>
-                    {% if weather.weather[0].main == "Clear" %}
-                    <i class="fa fa-sun-o" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
-                    {% elif weather.weather[0].main == "Clouds" %}
-                    <i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
+                    <b>{{ weather.name }}, FL.</b> <i>{{ weather.weather[0].description }}</i>
+                    {% if dt < sunrise %}
+                        {% if weather.weather[0].main == "Clear" %}
+                            <i class="fa fa-moon-o" aria-hidden="true"></i></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
+                            {% elif weather.weather[0].main == "Clouds" %}
+                            <i class="fa fa-moon-o" aria-hidden="true"></i><i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
+                        {% endif %}
+                    {% else %}
+                        {% if weather.weather[0].main == "Clear" %}
+                            <i class="fa fa-moon-o" aria-hidden="true"></i><i class="fa fa-sun-o" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
+                            {% elif weather.weather[0].main == "Clouds" %}
+                            <i class="fa fa-moon-o" aria-hidden="true"></i><i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
+                        {% endif %}
                     {% endif %}
                 </div>
                 <div class="col-md-8 col-md-offset-2">
