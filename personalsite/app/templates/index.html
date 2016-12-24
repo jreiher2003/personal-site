@@ -10,9 +10,7 @@
     <meta name='copyright' content="DSAC LLC">
     <meta name='language' content="english">
     <meta name="robots" content="index, follow">
-
     <title>Jeff Reiher</title>
-    
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -25,13 +23,13 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <b>{{ weather.name }}, FL.</b> <i>{{ weather.weather[0].description }}</i>
-                    {% if dt < sunrise %}
+                    {% if sunrise < dt and dt <= sunset  %}
                         {% if weather.weather[0].main == "Clear" %}
-                            <i class="fa fa-moon-o" aria-hidden="true"></i></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
+                            <i class="fa fa-sun-o" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
                             {% elif weather.weather[0].main == "Clouds" %}
-                            <i class="fa fa-moon-o" aria-hidden="true"></i><i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
+                            <i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
                         {% endif %}
-                    {% else %}
+                    {% elif dt > sunset %}
                         {% if weather.weather[0].main == "Clear" %}
                             <i class="fa fa-moon-o" aria-hidden="true"></i><i class="fa fa-sun-o" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
                             {% elif weather.weather[0].main == "Clouds" %}
@@ -52,11 +50,8 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                      <p>I'm a self taught programmer currently looking for a job in the technical field.</p>
-
                     <p>Previously, in my former (non-programming) life I was in sales.&nbsp;  Living in <a href="https://en.wikipedia.org/wiki/Costa_Rica">Costa Rica</a> for 5 years was a life changing experience. I became interested in programming and saw lots of opportunity's for people who knew how to code.</p>  
-
                     <p>I wake up everyday with ambition to be the best programmer I can be.</p>  
-
                     <p>Here is a <a href="{{ url_for('projects') }}"> portfolio</a> of some skills that I have.&nbsp;<small class="text-muted">(I try to keep it updated.)</small><br>  Please check out my <a href="{{ profile.url }}" target="_blank">github</a>.</p>
                     <p> You can contact me at <a href="{{ profile.email }}">me@jeffreiher.com</a>. &nbsp;My latest resume is available <a href="{{ url_for('show_resume') }}">here</a>.</p>
                     <hr>
@@ -76,7 +71,6 @@
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
           })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
           ga('create', 'UA-68828092-1', 'auto');
           ga('send', 'pageview');
         </script>
