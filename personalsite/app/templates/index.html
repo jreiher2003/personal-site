@@ -37,6 +37,8 @@
                                 <i class="fa fa-moon-o" aria-hidden="true"></i><i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
                             {% endif %}
                         {% endif %}
+                    <br>
+                    <small class="text-muted">{{ dt|date_s}} EST</small>
                     </span>
                     <span class="pull-right">
                         <b>{{ user_weather.name }}, FL.</b> <i>{{ user_weather.weather[0].description }}</i>
@@ -55,7 +57,6 @@
                     <div class="row">
                         <div class="col-md-12">
                             <img class="pull-left img-responsive" src="{{ profile.avatar_url }}"><h1>Hey there, I'm Jeff Reiher <br><small style="font-size:14px;"><i>Thanks for visiting my page from {{ user_loc.city }}, {{ user_loc.region }} {{ user_loc.postal }} {{ user_loc.country }}</i></small></h1>
-                            <small class="text-muted">{{ dt|date_s}}</small>
                         </div>
                     </div>
                 </div>
