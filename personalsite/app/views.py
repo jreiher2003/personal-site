@@ -69,7 +69,8 @@ def hello_world():
     now_utc = datetime.now(pytz.timezone('UTC'))
     dt = now_utc.astimezone(pytz.timezone('US/Eastern'))
     weather = find_current_weather("weather?id=4154465,us&units=imperial&")
-    sunrise,sunset = find_sunset_sunrise()   
+    sunrise,sunset = find_sunset_sunrise()  
+    print sunset 
     quote = quotes()
     return render_template(
         "index.html",
