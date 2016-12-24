@@ -33,8 +33,10 @@
                         {% elif dt > sunset %}
                             {% if weather.weather[0].main == "Clear" %}
                                 <i class="fa fa-moon-o" aria-hidden="true"></i><i class="fa fa-sun-o" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
-                                {% elif weather.weather[0].main == "Clouds" %}
+                            {% elif weather.weather[0].main == "Clouds" %}
                                 <i class="fa fa-moon-o" aria-hidden="true"></i><i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
+                            {% else %}
+                                    and its <u>{{ user_weather.main.temp }}&#176;F</u> outside.
                             {% endif %}
                         {% endif %}
                     <br>
@@ -44,8 +46,10 @@
                         <b>{{ user_weather.name }}, {{ user_weather.sys.country }}.</b> <i>{{ user_weather.weather[0].description }}</i>
                             {% if user_weather.weather[0].main == "Clear" %}
                                 <i class="fa fa-sun-o" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside.
-                                {% elif user_weather.weather[0].main == "Clouds" %}
+                            {% elif user_weather.weather[0].main == "Clouds" %}
                                 <i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside.
+                            {% else %}
+                                    and its <u>{{ user_weather.main.temp }}&#176;F</u> outside.
                             {% endif %}
                     </span>
                 </div>
