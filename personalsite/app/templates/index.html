@@ -16,43 +16,49 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="static/styles.css">
     </head>
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <span class="pull-left">
-                        <b>{{ weather.name }}, FL.</b> <i>{{ weather.weather[0].description }}</i>
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <span class="text-center">
+                        <a class="btn btn-primary" role="button" style="width:100%;white-space:normal;" data-toggle="collapse" href="#user_weather" aria-expanded="false" aria-controls="user_weather"><b>{{ user_weather.name }}, {{ user_loc.region }} {{ user_loc.postal }} {{ user_loc.country }}</b> <i>{{ user_weather.weather[0].description }}</i>
                         {% if sunrise < dt and dt <= sunset  %}
-                            {% if weather.weather[0].main == "Clear" %}
-                                <i class="fa fa-sun-o" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
-                                {% elif weather.weather[0].main == "Clouds" %}
-                                <i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
+                            {% if user_weather.weather[0].main == "Clear" %}
+                                <i class="fa fa-sun-o" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside
+                                {% elif user_weather.weather[0].main == "Clouds" %}
+                                <i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside
                             {% endif %}
                         {% elif dt > sunset %}
-                            {% if weather.weather[0].main == "Clear" %}
-                                <i class="fa fa-moon-o" aria-hidden="true"></i><i class="fa fa-sun-o" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
-                            {% elif weather.weather[0].main == "Clouds" %}
-                                <i class="fa fa-moon-o" aria-hidden="true"></i><i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ weather.main.temp }}&#176;F</u> outside.
+                            {% if user_weather.weather[0].main == "Clear" %}
+                                <i class="fa fa-moon-o" aria-hidden="true"></i><i class="fa fa-sun-o" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside
+                            {% elif user_weather.weather[0].main == "Clouds" %}
+                                <i class="fa fa-moon-o" aria-hidden="true"></i><i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside
                             {% else %}
-                                    and its <u>{{ user_weather.main.temp }}&#176;F</u> outside.
+                                    and its <u>{{ user_weather.main.temp }}&#176;F</u> outside
                             {% endif %}
                         {% endif %}
-                    <br>
-                    <small class="text-muted">{{ dt|date_s}} EST</small>
-                    </span>
-                    <span class="pull-right">
-                        <b>{{ user_weather.name }}, {{ user_weather.sys.country }}.</b> <i>{{ user_weather.weather[0].description }}</i>
-                            {% if user_weather.weather[0].main == "Clear" %}
-                                <i class="fa fa-sun-o" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside.
-                            {% elif user_weather.weather[0].main == "Clouds" %}
-                                <i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside.
-                            {% else %}
-                                    and its <u>{{ user_weather.main.temp }}&#176;F</u> outside.
-                            {% endif %}
+                            with {{ user_weather.main.humidity }}% humidity.
+                    <br></a>
+                    <div class="collapse" id="user_weather">
+                      <div class="well">
+                        <b>Sunrise: </b>{{ sunrise|date_s }} EST<br>
+                        <b>Sunset: </b>{{ sunset|date_s }} EST<br>
+                        <b>Pressure: </b>{{ user_weather.main.pressure }}<br>
+                        <b>High: </b>{{ user_weather.main.temp_max }}&#176;F<br>
+                        <b>Low: </b>{{ user_weather.main.temp_min }}&#176;F<br>
+                        <b>Wind Speed: </b>{{ user_weather.wind.speed }}&nbsp;MPH<br>
+                        <b>Cod: </b>{{ user_weather.cod }}
+                      </div>
+                    </div>
+
+                    <br><small class="text-muted">{{ dt|date_s}} EST</small>
                     </span>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <blockquote>
                         <p class="quote">{{ quote.quote }}</p>
@@ -60,7 +66,7 @@
                     </blockquote><hr> 
                     <div class="row">
                         <div class="col-md-12">
-                            <img class="pull-left img-responsive" src="{{ profile.avatar_url }}"><h1>Hey there, I'm Jeff Reiher <br><small style="font-size:14px;"><i>Thanks for visiting my page from {{ user_loc.city }}, {{ user_loc.region }} {{ user_loc.postal }} {{ user_loc.nam }} {{ user_loc.country }}</i></small></h1>
+                            <img class="img-responsive" src="{{ profile.avatar_url }}"><h1>Hey there, I'm Jeff Reiher <br><small style="font-size:14px;"><i>Thanks for visiting my page from {{ user_loc.city }}, {{ user_loc.region }} {{ user_loc.postal }} {{ user_loc.nam }} {{ user_loc.country }}</i></small></h1>
                         </div>
                     </div>
                 </div>
@@ -69,6 +75,20 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                      <p>I'm a self taught programmer currently looking for a job in the technical field.</p>
+                    <a class="btn btn-primary" role="button" data-toggle="collapse" href="#myip" aria-expanded="false" aria-controls="myip">
+                    What's my IP?
+                    </a>
+                    <div class="collapse" id="myip">
+                      <div class="well">
+                        <b>IP: </b>{{ user_loc.ip }}<br>
+                        <b>City: </b>{{ user_loc.city }}<br>
+                        <b>Region: </b>{{ user_loc.region }}<br>
+                        <b>Country: </b>{{ user_loc.country }}<br>
+                        <b>Postal Code: </b>{{ user_loc.postal }}<br>
+                        <b>Internet Provider: </b>{{ user_loc.org }}<br>
+                        <b>Host Name: </b>{{ user_loc.hostname }}
+                      </div>
+                    </div>
                     <p>Previously, in my former (non-programming) life I was in sales.&nbsp;  Living in <a href="https://en.wikipedia.org/wiki/Costa_Rica">Costa Rica</a> for 5 years was a life changing experience. I became interested in programming and saw lots of opportunity's for people who knew how to code.</p>  
                     <p>I wake up everyday with ambition to be the best programmer I can be.</p>  
                     <p>Here is a <a href="{{ url_for('projects') }}"> portfolio</a> of some skills that I have.&nbsp;<small class="text-muted">(I try to keep it updated.)</small><br>  Please check out my <a href="{{ profile.url }}" target="_blank">github</a>.</p>
@@ -84,7 +104,6 @@
                 </div>
             </div>
         </div>
-
        <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -93,7 +112,7 @@
           ga('create', 'UA-68828092-1', 'auto');
           ga('send', 'pageview');
         </script>
-        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         
     </body>

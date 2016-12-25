@@ -44,15 +44,14 @@ def find_current_weather(params):
     URL = "http://api.openweathermap.org/data/2.5/"
     cur = params
     m = URL + cur + APIKEY
-    # print m
     return requests.get(m, headers=headers).json()
 
 def find_user_weather(lat, lon):
     return find_current_weather("weather?lat=%s&lon=%s&units=imperial&" % (lat,lon))
 
-def find_sunset_sunrise():
+def find_user_sunset_sunrise(lat,lon):
     local_tz = pytz.timezone("US/Eastern")
-    weather = find_current_weather("weather?id=4154465,us&units=imperial&")
+    weather = find_user_weather(lat,lon)
     s = weather['sys']['sunset']
     r = weather['sys']['sunrise']
     ss = datetime.fromtimestamp(s).replace(tzinfo=pytz.utc)
@@ -68,8 +67,7 @@ def hello_world():
     user_weather = find_user_weather(lat,lon)
     now_utc = datetime.now(pytz.timezone('UTC'))
     dt = now_utc.astimezone(pytz.timezone('US/Eastern'))
-    weather = find_current_weather("weather?id=4154465,us&units=imperial&")
-    sunrise,sunset = find_sunset_sunrise()  
+    sunrise,sunset = find_user_sunset_sunrise(lat,lon)  
     print sunset 
     quote = quotes()
     return render_template(
@@ -77,7 +75,6 @@ def hello_world():
         dt = dt, 
         profile=profile, 
         quote=quote,
-        weather=weather,
         sunrise=sunrise,
         sunset=sunset,
         user_loc=user_loc,
