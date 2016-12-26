@@ -22,14 +22,16 @@
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-8 col-md-offset-2 text-center">
                     <a class="btn btn-primary" role="button" style="width:100%;white-space:normal;" data-toggle="collapse" href="#user_weather" aria-expanded="false" aria-controls="user_weather"><b>{{ user_weather.name }}, {{ user_loc.region }} {{ user_loc.postal }} {{ user_loc.country }}</b> <i>{{ user_weather.weather[0].description }}</i>
                     {% if sunrise < dt and dt <= sunset  %}
                     <!-- day -->
-                        <img class="btn-img" src="http://openweathermap.org/img/w/{{ user_weather.weather[0].icon }}.png"> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside.
+                        <img class="btn-img" src="http://openweathermap.org/img/w/{{ user_weather.weather[0].icon }}.png" style="border:none;
+                        width:40px;box-shadow:none;"> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside.
                     {% else %}
                     <!-- night <i class="fa fa-sun-o" aria-hidden="true"></i>-->
-                        <img class="btn-img" src="http://openweathermap.org/img/w/{{ user_weather.weather[0].icon }}.png"><i class="fa fa-moon-o" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside.
+                        <img class="btn-img" src="http://openweathermap.org/img/w/{{ user_weather.weather[0].icon }}.png" style="border:none;
+                        width:40px;box-shadow:none;"><i class="fa fa-moon-o" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside.
                     {% endif %} 
                     </a>
                     <div class="collapse" id="user_weather">
