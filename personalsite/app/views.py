@@ -5,6 +5,7 @@ import pytz
 import requests
 from app import app
 from flask import render_template, url_for, redirect, jsonify, request 
+from user_agents import parse
 import config 
 from config import BaseConfig 
 
@@ -33,6 +34,8 @@ def rand_pic(len_object):
 
 def quotes():
     quote = requests.get("http://quotes.stormconsultancy.co.uk/quotes.json", headers=headers).json()
+    print len(quote), "len_object"
+    print rand_pic(len(quote)),"chosen quote by index"
     return quote[rand_pic(len(quote))]
 
 def profiles():
@@ -49,6 +52,10 @@ def find_current_weather(params):
 def find_user_weather(lat, lon):
     return find_current_weather("weather?lat=%s&lon=%s&units=imperial&" % (lat,lon))
 
+def find_browers_os_info():
+    user_agent = request.headers["User-Agent"]
+    return parse(user_agent)
+
 def find_user_sunset_sunrise(lat,lon):
     local_tz = pytz.timezone("US/Eastern")
     weather = find_user_weather(lat,lon)
@@ -62,6 +69,7 @@ def find_user_sunset_sunrise(lat,lon):
 
 @app.route('/')
 def hello_world():
+    user_agent = find_browers_os_info()
     user_loc = find_my_loc()
     lat, lon = find_lon_lat()
     user_weather = find_user_weather(lat,lon)
@@ -77,7 +85,8 @@ def hello_world():
         sunrise=sunrise,
         sunset=sunset,
         user_loc=user_loc,
-        user_weather=user_weather
+        user_weather=user_weather,
+        user_agent=user_agent
         )
 
 @app.route("/projects")
