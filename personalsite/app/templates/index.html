@@ -45,9 +45,9 @@
                             with {{ user_weather.main.humidity }}% humidity.
                     <br></a>
                     <div class="collapse" id="user_weather">
-                      <div class="well">
-                        <b>Sunrise: </b>{{ sunrise|date_s }} EST<br>
-                        <b>Sunset: </b>{{ sunset|date_s }} EST<br>
+                      <div class="well text-left">
+                        <b>Sunrise: </b>{{ sunrise|date_s }} {{ local_name_tz }} <br>
+                        <b>Sunset: </b>{{ sunset|date_s }} {{ local_name_tz }}<br>
                         <b>Pressure: </b>{{ user_weather.main.pressure }}<br>
                         <b>High: </b>{{ user_weather.main.temp_max }}&#176;F<br>
                         <b>Low: </b>{{ user_weather.main.temp_min }}&#176;F<br>
@@ -55,8 +55,7 @@
                         <b>Cod: </b>{{ user_weather.cod }}
                       </div>
                     </div>
-
-                    <br><small class="text-muted">{{ dt|date_s}} EST</small>
+                    <br><small class="text-muted">{{ current_local_time|date_s }} {{ local_name_tz }}</small>
                     </span>
                 </div>
             </div>
