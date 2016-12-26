@@ -15,6 +15,11 @@ img {
     padding-right: 0px;
     border-radius: 5%;
 }
+img.btn-img {
+    border:none;
+    width:40px;
+    box-shadow:none;
+}
 p {
     font-size: 18px;
     line-height: 32px;

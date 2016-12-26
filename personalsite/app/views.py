@@ -18,6 +18,16 @@ headers = header()
 def get_my_ip():
     return request.remote_addr
 
+def degrees_to_cardinal(d):
+    '''
+    note: this is highly approximate...
+    author: RobertSudwarts. githubGist: https://gist.github.com/RobertSudwarts/acf8df23a16afdb5837f
+    '''
+    dirs = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE",
+            "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
+    ix = int((d + 11.25)/22.5)
+    return dirs[ix % 16]
+
 def find_my_loc():
     user = get_my_ip()
     if os.environ["APP_SETTINGS"] == 'config.DevelopmentConfig':
@@ -60,6 +70,7 @@ def find_current_weather(params):
     URL = "http://api.openweathermap.org/data/2.5/"
     cur = params
     m = URL + cur + APIKEY
+    print m
     return requests.get(m, headers=headers).json()
 
 def find_user_weather():
@@ -78,20 +89,22 @@ def find_user_sunset_sunrise():
     weather = find_user_weather()
     s = weather['sys']['sunset']
     r = weather['sys']['sunrise']
+    wind_degree = weather["wind"]["deg"]
     ss = datetime.fromtimestamp(s).replace(tzinfo=pytz.utc)
     rr = datetime.fromtimestamp(r).replace(tzinfo=pytz.utc)
     ct = datetime.fromtimestamp(float(epoch_time)).replace(tzinfo=pytz.utc)# should already b in utc
     sunset = ss.astimezone(pytz.timezone(local_tz_str))
     sunrise = rr.astimezone(pytz.timezone(local_tz_str))
     current_local_time = ct.astimezone(pytz.timezone(local_tz_str))
-    return sunrise,sunset, current_local_time, local_name_tz, local_tz_str
+    return sunrise,sunset, current_local_time, local_name_tz, local_tz_str, wind_degree
 
 @app.route('/')
 def hello_world():
     user_agent = find_browers_os_info()
     user_loc = find_my_loc()
     user_weather = find_user_weather()
-    sunrise,sunset,current_local_time, local_name_tz, local_tz_str = find_user_sunset_sunrise()  
+    sunrise,sunset,current_local_time, local_name_tz, local_tz_str, wind_degree = find_user_sunset_sunrise() 
+    wind_direction = degrees_to_cardinal(wind_degree)
     dt = datetime.now(pytz.timezone('UTC')).astimezone(pytz.timezone(local_tz_str))
     quote = quotes()
     return render_template(
@@ -105,7 +118,8 @@ def hello_world():
         user_weather=user_weather,
         user_agent=user_agent,
         current_local_time=current_local_time,
-        local_name_tz=local_name_tz
+        local_name_tz=local_name_tz,
+        wind_direction=wind_direction
         )
 
 @app.route("/projects")

@@ -22,41 +22,56 @@
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center">
-                    <span class="text-center">
-                        <a class="btn btn-primary" role="button" style="width:100%;white-space:normal;" data-toggle="collapse" href="#user_weather" aria-expanded="false" aria-controls="user_weather"><b>{{ user_weather.name }}, {{ user_loc.region }} {{ user_loc.postal }} {{ user_loc.country }}</b> <i>{{ user_weather.weather[0].description }}</i>
-                        {% if sunrise < dt and dt <= sunset  %}
-                        <!-- day -->
-                            {% if user_weather.weather[0].main == "Clear" %}
-                                <i class="fa fa-sun-o" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside
-                                {% elif user_weather.weather[0].main == "Clouds" %}
-                                <i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside
-                            {% endif %}
-                        {% else %}
-                        <!-- night <i class="fa fa-sun-o" aria-hidden="true"></i>-->
-                            {% if user_weather.weather[0].main == "Clear" %}
-                                <i class="fa fa-moon-o" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside
-                            {% elif user_weather.weather[0].main == "Clouds" %}
-                                <i class="fa fa-moon-o" aria-hidden="true"></i><i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside
-                            {% else %}
-                                    and its <u>{{ user_weather.main.temp }}&#176;F</u> outside
-                            {% endif %}
-                        {% endif %}
-                            with {{ user_weather.main.humidity }}% humidity.
-                    <br></a>
+                <div class="col-md-8 col-md-offset-2">
+                    <a class="btn btn-primary" role="button" style="width:100%;white-space:normal;" data-toggle="collapse" href="#user_weather" aria-expanded="false" aria-controls="user_weather"><b>{{ user_weather.name }}, {{ user_loc.region }} {{ user_loc.postal }} {{ user_loc.country }}</b> <i>{{ user_weather.weather[0].description }}</i>
+                    {% if sunrise < dt and dt <= sunset  %}
+                    <!-- day -->
+                        <img class="btn-img" src="http://openweathermap.org/img/w/{{ user_weather.weather[0].icon }}.png"> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside.
+                    {% else %}
+                    <!-- night <i class="fa fa-sun-o" aria-hidden="true"></i>-->
+                        <img class="btn-img" src="http://openweathermap.org/img/w/{{ user_weather.weather[0].icon }}.png"><i class="fa fa-moon-o" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside.
+                    {% endif %} 
+                    </a>
                     <div class="collapse" id="user_weather">
-                      <div class="well text-left">
-                        <b>Sunrise: </b>{{ sunrise|date_s }} {{ local_name_tz }} <br>
-                        <b>Sunset: </b>{{ sunset|date_s }} {{ local_name_tz }}<br>
-                        <b>Pressure: </b>{{ user_weather.main.pressure }}<br>
-                        <b>High: </b>{{ user_weather.main.temp_max }}&#176;F<br>
-                        <b>Low: </b>{{ user_weather.main.temp_min }}&#176;F<br>
-                        <b>Wind Speed: </b>{{ user_weather.wind.speed }}&nbsp;MPH<br>
-                        <b>Cod: </b>{{ user_weather.cod }}
-                      </div>
-                    </div>
-                    <br><small class="text-muted">{{ current_local_time|date_s }} {{ local_name_tz }}</small>
-                    </span>
+                      <div class="well">
+                        <div class="row">
+                          <div class="col-md-3 text-left">
+                            <table class="table table-striped table-bordered table-condensed">
+                                <thead>
+                                    <tr>
+                                        <td colspan="2"><h4 class="text-center">Today's Info</h4></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><b>Sunrise </b></td><td>{{ sunrise|just_time }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Sunset </b></td><td>{{ sunset|just_time }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Humidity </b></td><td>{{ user_weather.main.humidity }}%</td>
+                                    </tr>
+                                    <tr>    
+                                        <td><b>High </b></td><td>{{ user_weather.main.temp_max }}&#176;F</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Low </b></td><td>{{ user_weather.main.temp_min }}&#176;F</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Wind Speed </b></td><td>{{ user_weather.wind.speed }}&nbsp;MPH {{ wind_direction }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div><!-- end col-md-3 -->
+                        <div class="col-md-9">
+                            this is where 5 day forcast is going
+                        </div><!-- end col-md-9 -->
+                      </div><!-- end row -->
+                    </div><!-- end well -->
+                </div>
+                  <small class="text-muted text-center">{{ current_local_time|date_s }} {{ local_name_tz }}</small>
+                    
                 </div>
             </div>
             <div class="row">
