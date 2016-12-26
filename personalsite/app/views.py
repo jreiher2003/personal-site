@@ -68,7 +68,6 @@ def hello_world():
     now_utc = datetime.now(pytz.timezone('UTC'))
     dt = now_utc.astimezone(pytz.timezone('US/Eastern'))
     sunrise,sunset = find_user_sunset_sunrise(lat,lon)  
-    print sunset 
     quote = quotes()
     return render_template(
         "index.html",

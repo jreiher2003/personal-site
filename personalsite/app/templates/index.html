@@ -26,14 +26,16 @@
                     <span class="text-center">
                         <a class="btn btn-primary" role="button" style="width:100%;white-space:normal;" data-toggle="collapse" href="#user_weather" aria-expanded="false" aria-controls="user_weather"><b>{{ user_weather.name }}, {{ user_loc.region }} {{ user_loc.postal }} {{ user_loc.country }}</b> <i>{{ user_weather.weather[0].description }}</i>
                         {% if sunrise < dt and dt <= sunset  %}
+                        <!-- day -->
                             {% if user_weather.weather[0].main == "Clear" %}
                                 <i class="fa fa-sun-o" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside
                                 {% elif user_weather.weather[0].main == "Clouds" %}
                                 <i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside
                             {% endif %}
-                        {% elif dt > sunset %}
+                        {% else %}
+                        <!-- night <i class="fa fa-sun-o" aria-hidden="true"></i>-->
                             {% if user_weather.weather[0].main == "Clear" %}
-                                <i class="fa fa-moon-o" aria-hidden="true"></i><i class="fa fa-sun-o" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside
+                                <i class="fa fa-moon-o" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside
                             {% elif user_weather.weather[0].main == "Clouds" %}
                                 <i class="fa fa-moon-o" aria-hidden="true"></i><i class="fa fa-cloud" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside
                             {% else %}
