@@ -1,11 +1,13 @@
 import os
 import random
+import time
 from datetime import datetime
 import pytz
 import requests
 from app import app
 from flask import render_template, url_for, redirect, jsonify, request 
 from user_agents import parse
+import googlemaps 
 import config 
 from config import BaseConfig 
 
@@ -29,53 +31,68 @@ def find_lon_lat():
     lat = user_loc['loc'].split(",")[0]
     return lat, lon
 
+def find_local_tz():
+    """ google maps api for finding local tz """
+    epoch_time = str(time.time())
+    gmaps_key = os.environ["GOOGLE_MAPS_API"]
+    lat,lon = find_lon_lat()
+    local_tz = requests.get("https://maps.googleapis.com/maps/api/timezone/json?location=%s,%s&timestamp=%s&key=%s" % (lat,lon,epoch_time,gmaps_key)).json()
+    return local_tz,epoch_time
+
 def rand_pic(len_object):
     return random.randint(1,len_object+1)
 
 def quotes():
+    """ an api for computer science quotes """
     quote = requests.get("http://quotes.stormconsultancy.co.uk/quotes.json", headers=headers).json()
     print len(quote), "len_object"
     print rand_pic(len(quote)),"chosen quote by index"
     return quote[rand_pic(len(quote))]
 
 def profiles():
+    """ grabs my github profile api"""
     return requests.get("https://api.github.com/users/jreiher2003", headers=headers).json()
 profile = profiles()
 
 def find_current_weather(params):
+    """ Open weather map api.  change params for different search"""
     APIKEY = "APPID="+BaseConfig.OPEN_WEATHER_MAP
     URL = "http://api.openweathermap.org/data/2.5/"
     cur = params
     m = URL + cur + APIKEY
     return requests.get(m, headers=headers).json()
 
-def find_user_weather(lat, lon):
+def find_user_weather():
+    lat,lon = find_lon_lat()
     return find_current_weather("weather?lat=%s&lon=%s&units=imperial&" % (lat,lon))
 
 def find_browers_os_info():
     user_agent = request.headers["User-Agent"]
     return parse(user_agent)
 
-def find_user_sunset_sunrise(lat,lon):
-    local_tz = pytz.timezone("US/Eastern")
-    weather = find_user_weather(lat,lon)
+def find_user_sunset_sunrise():
+    """finds local user sunrise,sunset, and current local time and names timezone and timezone string"""
+    tz, epoch_time = find_local_tz()
+    local_name_tz = tz['timeZoneId']
+    local_tz_str = str(tz['timeZoneId'])
+    weather = find_user_weather()
     s = weather['sys']['sunset']
     r = weather['sys']['sunrise']
     ss = datetime.fromtimestamp(s).replace(tzinfo=pytz.utc)
     rr = datetime.fromtimestamp(r).replace(tzinfo=pytz.utc)
-    sunset = ss.astimezone(pytz.timezone('US/Eastern'))
-    sunrise = rr.astimezone(pytz.timezone('US/Eastern'))
-    return sunrise,sunset
+    ct = datetime.fromtimestamp(float(epoch_time)).replace(tzinfo=pytz.utc)# should already b in utc
+    sunset = ss.astimezone(pytz.timezone(local_tz_str))
+    sunrise = rr.astimezone(pytz.timezone(local_tz_str))
+    current_local_time = ct.astimezone(pytz.timezone(local_tz_str))
+    return sunrise,sunset, current_local_time, local_name_tz, local_tz_str
 
 @app.route('/')
 def hello_world():
     user_agent = find_browers_os_info()
     user_loc = find_my_loc()
-    lat, lon = find_lon_lat()
-    user_weather = find_user_weather(lat,lon)
-    now_utc = datetime.now(pytz.timezone('UTC'))
-    dt = now_utc.astimezone(pytz.timezone('US/Eastern'))
-    sunrise,sunset = find_user_sunset_sunrise(lat,lon)  
+    user_weather = find_user_weather()
+    sunrise,sunset,current_local_time, local_name_tz, local_tz_str = find_user_sunset_sunrise()  
+    dt = datetime.now(pytz.timezone('UTC')).astimezone(pytz.timezone(local_tz_str))
     quote = quotes()
     return render_template(
         "index.html",
@@ -86,7 +103,9 @@ def hello_world():
         sunset=sunset,
         user_loc=user_loc,
         user_weather=user_weather,
-        user_agent=user_agent
+        user_agent=user_agent,
+        current_local_time=current_local_time,
+        local_name_tz=local_name_tz
         )
 
 @app.route("/projects")
