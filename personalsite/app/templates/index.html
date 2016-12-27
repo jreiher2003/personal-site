@@ -33,7 +33,7 @@
                     {% endif %} 
                     </a>
                     <div class="collapse" id="user_weather">
-                      <div class="well">
+                      <div class="dropdown_border">
                         <div class="row">
                           <div class="col-md-3 text-left">
                             <table class="table table-striped table-bordered table-condensed">
@@ -95,16 +95,20 @@
                     What's my IP?
                     </a>
                     <div class="collapse" id="myip">
-                      <div class="well">
-                        <b>Device Info: </b>{{ user_agent }}<br>
-                        <b>IP: </b>{{ user_loc.ip }}<br>
-                        <b>City: </b>{{ user_loc.city }}<br>
-                        <b>Region: </b>{{ user_loc.region }}<br>
-                        <b>Country: </b>{{ user_loc.country }}<br>
-                        <b>Postal Code: </b>{{ user_loc.postal }}<br>
-                        <b>Internet Provider: </b>{{ user_loc.org }}<br>
-                        <b>Host Name: </b>{{ user_loc.hostname }}<br>
-                      </div>
+                        <div class="dropdown_border">
+                            <table class="table table-striped table-bordered table-condensed">
+                                <tbody>
+                                    <tr><td><b>Device Info</b></td><td>{{ user_agent }}</td></tr>
+                                    <tr><td><b>IP </b></td><td>{{ user_loc.ip }}</td></tr>
+                                    <tr><td><b>City </b></td><td>{{ user_loc.city }}</td></tr>
+                                    <tr><td><b>Region </b></td><td>{{ user_loc.region }}</td></tr>
+                                    <tr><td><b>Country </b></td><td>{{ user_loc.country }}</td></tr>
+                                    <tr><td><b>Postal Code </b></td><td>{{ user_loc.postal }}</td></tr>
+                                    <tr><td><b>Internet Provider </b></td><td>{{ user_loc.org }}</td></tr>
+                                    <tr><td><b>Host Name </b></td><td>{{ user_loc.hostname }}</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <p>Previously, in my former (non-programming) life I was in sales.&nbsp;  Living in <a href="https://en.wikipedia.org/wiki/Costa_Rica">Costa Rica</a> for 5 years was a life changing experience. I became interested in programming and saw lots of opportunity's for people who knew how to code.</p>  
                     <p>I wake up everyday with ambition to be the best programmer I can be.</p>  

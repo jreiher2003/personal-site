@@ -60,6 +60,14 @@ ul {
     margin-right: 0;
     text-align: left;
 }
+.dropdown_border {
+    border: 1px solid #999999;
+    box-shadow: 1px 1px 1px #999;
+}
+#user_weather > div > div > div.col-md-3.text-left > table,
+#myip > div > table {
+    margin-bottom: 0;
+}
 @media screen and (max-width: 550px) {
     h1 {
         font-size: 24px;
