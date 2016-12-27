@@ -26,12 +26,10 @@
                     <a class="btn btn-primary" role="button" style="width:100%;white-space:normal;" data-toggle="collapse" href="#user_weather" aria-expanded="false" aria-controls="user_weather"><b>{{ user_weather.name }}, {{ user_loc.region }} {{ user_loc.postal }} {{ user_loc.country }}</b> <i>{{ user_weather.weather[0].description }}</i>
                     {% if sunrise < dt and dt <= sunset  %}
                     <!-- day -->
-                        <img class="btn-img" src="http://openweathermap.org/img/w/{{ user_weather.weather[0].icon }}.png" style="border:none;
-                        width:40px;box-shadow:none;"> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside.
+                        <img class="btn-img hidden-sm hidden-md hidden-lg" src="http://openweathermap.org/img/w/{{ user_weather.weather[0].icon }}.png" style="border:none;width:40px;box-shadow:none;"><i class="fa fa-sun-o hidden-xs" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside.
                     {% else %}
                     <!-- night <i class="fa fa-sun-o" aria-hidden="true"></i>-->
-                        <img class="btn-img" src="http://openweathermap.org/img/w/{{ user_weather.weather[0].icon }}.png" style="border:none;
-                        width:40px;box-shadow:none;"><i class="fa fa-moon-o" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside.
+                        <img class="btn-img hidden-sm-up hidden-md hidden-lg" src="http://openweathermap.org/img/w/{{ user_weather.weather[0].icon }}.png" style="border:none;width:40px;box-shadow:none;"><i class="fa fa-moon-o" aria-hidden="true"></i> and its <u>{{ user_weather.main.temp }}&#176;F</u> outside.
                     {% endif %} 
                     </a>
                     <div class="collapse" id="user_weather">
@@ -110,7 +108,7 @@
                     </div>
                     <p>Previously, in my former (non-programming) life I was in sales.&nbsp;  Living in <a href="https://en.wikipedia.org/wiki/Costa_Rica">Costa Rica</a> for 5 years was a life changing experience. I became interested in programming and saw lots of opportunity's for people who knew how to code.</p>  
                     <p>I wake up everyday with ambition to be the best programmer I can be.</p>  
-                    <p>Here is a <a href="{{ url_for('projects') }}"> portfolio</a> of some skills that I have.&nbsp;<small class="text-muted">(I try to keep it updated.)</small><br>  Please check out my <a href="{{ profile.url }}" target="_blank">github</a>.</p>
+                    <p>Here is a <a href="{{ url_for('projects') }}"> portfolio</a> of some skills that I have.&nbsp;<small class="text-muted">(I try to keep it updated.)</small><br>  Please check out my <a href="https://github.com/jreiher2003" target="_blank">github</a>.</p>
                     <p> You can contact me at <a href="{{ profile.email }}">me@jeffreiher.com</a>. &nbsp;My latest resume is available <a href="{{ url_for('show_resume') }}">here</a>.</p>
                     <hr>
                       <ul class="list-inline social">

@@ -70,7 +70,7 @@ def find_current_weather(params):
     URL = "http://api.openweathermap.org/data/2.5/"
     cur = params
     m = URL + cur + APIKEY
-    print m
+    # print m
     return requests.get(m, headers=headers).json()
 
 def find_user_weather():
