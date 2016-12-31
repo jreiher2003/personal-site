@@ -1,26 +1,96 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="author" content="Jeff Reiher">
-    <meta name='copyright' content="DSAC LLC">
-    <meta name='language' content="english">
-    <meta name="robots" content="index, follow">
+{% include "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="row">
+                <h1 class="text-center" style="margin-left:0;">Jeffrey William Reiher</h1> 
+                <h5 class="text-center">10550 Amberjack Way Unit 103 Englewood FL. 34224</h4>
+                <h5 class="text-center"><a href="mailto:jeffreiher@gmail.com">me@jeffreiher.com</a> | <a href="http://jeffreiher.com" target="_blank">www.jeffreiher.com</a> | <a href="tel:+19415853084">941-585-3084</a></h4>
+                <h5 class="text-center">LinkedIn: <a href="https://www.linkedin.com/in/jeff-reiher-1329b748"><i class="fa fa-linkedin-square" style="font-size:20px;" aria-hidden="true"></i>&nbsp;&nbsp;Jeff Reiher</a></h5>
+            </div>
+            <div class="row">
+                <h3 class="text-center">Independent Contractor Freelance Web Developer</h3>
+                <h4 class="text-center">Specializing in web applications for small businesses</h4>
+            </div>
+            <div class="row">
+                <h3 class="text-center"><b><u>PROFESSIONAL PROFILE</u></b></h3><br>
+                <h4><b>Entrepreneurship:</b>&nbsp;&nbsp; Owner and Operator of DSAC LLC. Web Development Solutions</h4>
+                <h4><b>Self Taught Web Developer:</b>&nbsp;&nbsp; Successfully self taught Python programming language 2013-present, Introduction to Computer Science 2014, Introduction to the Design of Everyday Things 2014 , and Web Development 2014</h4>
+            </div>
+            <div class="row">
+                <h3 class="text-center"><b><u>EXPERIENCE</u></b></h3>
+                <div>
+                    <div class="head_ex">
+                        <div class="pull-left"><h4><b><u>DSAC LLC.</u></b><br>Owner, Lead Developer</h4></div>
+                        <div class="pull-right text-right"><h4>Englewood, FL.<br>Aug 2013 - Present</h4></div>
+                    </div>
+                    <br><br><br>
+                    <div class="body_ex">
+                        <h4>Build web apps in python using flask, ubuntu, postgresql, bootstrap, jquery, css, javascript, amazon ec2, email server experience</h4>
+                        <ul class="text-left">
+                            <li>Developed Python apps with Flask, SQLAlchemy and PostgreSQL</li>
+                            <li>Experienced in Git, Object-oriented programming,JavaScript, jQuery</li>
+                            <li>Maintained management databases (MySQL / PostgreSQL / MongoDB)</li>
+                            <li>Managed Linux virtual servers at Amazon EC2, S3, SES, Route 53, Google App Engine, Heroku</li>
+                            <li>Demonstrated ability to work on own with minimum supervision</li>
+                            <li>Created solutions and carried out routine site maintenance</li>
+                            <li>Implemented site statistics and reporting with google analytics</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="head_ex">
+                        <div class="pull-left"><h4><b><u>Freedom Corp S.A. </u></b><br>Owner</h4></div>
+                        <div class="pull-right text-right"><h4>Heredia, Costa <br>Dec 2008 - Aug 2013 </h4></div>
+                    </div>
+                    <br><br><br>
+                    <div class="body_ex">
+                        <h4>Created and managed a telemarketing lead generation campaign for debt settlement and consolidation company</h4>
+                        <ul class="text-left">
+                            <li>Five9 virtual call center for live lead transfers, and subsequent leads</li>
+                            <li>Vetted and qualified potential clients resulting in 15-20 leads per day</li>
+                            <li>Hired and Managed 8-10 employees from odesk.com, and upwork.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="head_ex">
+                        <div class="pull-left"><h4><b><u>Sales</u></b><br></h4></div>
+                        <div class="pull-right text-right"><h4>Chicago, IL.<br>Nov 2003 - Dec-2008</h4></div>
+                    </div>
+                    <br><br><br>
+                    <div class="body_ex">
+                        <h4>Security National Warranty 2006-2008<br>
+                            US Energy Savings Corp-2004-2006<br>
+                            Comcast cable sales 2003-2004<br>
+                        </h4>
+                        
+                    </div>
+                </div>
 
-    <title>Jeff Reiher</title>
-    
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="static/styles.css">
-    </head>
-
-<body>
-    <pre>{{ content </pre>
-</body>
-</html>
+            </div>
+            <div class="row">
+                <h3 class="text-center"><b><u>EDUCATION</u></b></h3>
+                <h4 class="text-center">Southern Illinois University<br>
+                                        Bachelor's degree, Entrepreneurial and Small Business Operations<br>
+                                        Awarded December 2003<br><br>
+            </div>
+            <div class="row">
+                <h3 class="text-center"><b><u>SKILLS</u></b></h3>
+                <ul class="text-left">
+                    <li>Python</li>
+                    <li>Linux Ubuntu/trusty64</li>
+                    <li>Database management (MySQL,PostgreSQL,MongoDB)</li>
+                    <li><a href="https://drive.google.com/file/d/0B8eX9mhTeDTuZFo5aHNVd2N3Njg/view?usp=sharing" target="_blank">MongoDB University</a></li>
+                    <li><a href="https://drive.google.com/file/d/0B8eX9mhTeDTueGNRSWRScDJxTlU/view" target="_blank">Udacity Computer Science Certificate</a></li>
+                    <li><a href="https://drive.google.com/file/d/0B8eX9mhTeDTuSDlkWmxVTk9kYWM/view" target="_blank">Udacity Web Development Certificate</a></li>
+                    <li><a href="https://drive.google.com/file/d/0B8eX9mhTeDTuSnA5WV9IRi02TEk/view" target="_blank">Udacity Design of everyday things Certificate</a></li>
+                </ul>
+            </div>
+            <div style="margin-bottom:40px"></div>
+            
+        </div><!-- end col-md-12 -->
+    </div><!-- end top row -->
+</div><!-- end container -->
+{% endblock %}

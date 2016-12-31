@@ -141,7 +141,7 @@ def projects():
 @app.route("/resume")
 def show_resume():
     return render_template(
-        "JeffreyReiherResume.html"
+        "resume.html"
         )
 
 
