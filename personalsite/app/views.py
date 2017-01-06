@@ -94,7 +94,10 @@ def find_user_sunset_sunrise():
     weather = find_user_weather()
     s = weather['sys']['sunset']
     r = weather['sys']['sunrise']
-    wind_degree = weather["wind"]["deg"]
+    try: 
+        wind_degree = weather["wind"]["deg"]
+    except KeyError:
+        wind_degree = 0
     ss = datetime.fromtimestamp(s).replace(tzinfo=pytz.utc)
     rr = datetime.fromtimestamp(r).replace(tzinfo=pytz.utc)
     ct = datetime.fromtimestamp(float(epoch_time)).replace(tzinfo=pytz.utc)# should already b in utc
