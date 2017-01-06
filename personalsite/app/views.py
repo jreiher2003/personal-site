@@ -70,12 +70,17 @@ def find_current_weather(params):
     URL = "http://api.openweathermap.org/data/2.5/"
     cur = params
     m = URL + cur + APIKEY
-    # print m
+    print m
     return requests.get(m, headers=headers).json()
 
 def find_user_weather():
     lat,lon = find_lon_lat()
     return find_current_weather("weather?lat=%s&lon=%s&units=imperial&" % (lat,lon))
+# http://api.openweathermap.org/data/2.5/forecast?lat=26.9554&lon=-82.2987&mode=json&units=imperial&appid=d0ee3e692048455da290c0738b4ea751
+# http://api.openweathermap.org/data/2.5/forcast?lat=26.9554&lon=-82.2987&mode=json&units=imperial&APPID=d0ee3e692048455da290c0738b4ea751
+def find_user_5_day_forcast():
+    lat,lon = find_lon_lat() 
+    return find_current_weather("forecast/?lat=%s&lon=%s&mode=json&units=imperial&" % (lat,lon))
 
 def find_browers_os_info():
     user_agent = request.headers["User-Agent"]
@@ -103,6 +108,7 @@ def hello_world():
     user_agent = find_browers_os_info()
     user_loc = find_my_loc()
     user_weather = find_user_weather()
+    user_5day_forcast = find_user_5_day_forcast()
     sunrise,sunset,current_local_time, local_name_tz, local_tz_str, wind_degree = find_user_sunset_sunrise() 
     wind_direction = degrees_to_cardinal(wind_degree)
     dt = datetime.now(pytz.timezone('UTC')).astimezone(pytz.timezone(local_tz_str))
@@ -116,6 +122,7 @@ def hello_world():
         sunset=sunset,
         user_loc=user_loc,
         user_weather=user_weather,
+        user_5day_forcast = user_5day_forcast,
         user_agent=user_agent,
         current_local_time=current_local_time,
         local_name_tz=local_name_tz,

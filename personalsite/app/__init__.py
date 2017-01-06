@@ -1,4 +1,5 @@
 import os
+import datetime
 from flask import Flask 
 
 app = Flask(__name__) 
@@ -16,5 +17,11 @@ def just_time(value):
     """convert a datetime object to a formated string """
     return value.strftime("%I:%M %p")
 
+@app.template_filter()
+def time_stamp(value):
+    """ convert epoch time to strftime """
+    return datetime.datetime.fromtimestamp(value).strftime("%c")
+
 app.jinja_env.filters["date_s"] = date_s
 app.jinja_env.filters["just_time"] = just_time
+app.jinja_env.filters["time_stamp"] = time_stamp

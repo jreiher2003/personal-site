@@ -21,17 +21,18 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2 class="text-center">Project section of site</h2>
+            <h2 class="text-center">Project section of site <p class="pull-right"><a href="{{ url_for('hello_world') }}"><i class="fa fa-undo" style="font-size:20px;" aria-hidden="true"></i>&nbsp;&nbsp;back</a></h2>
             <hr>
             <div class="row">
                 <div class="col-md-5 col-md-offset-1">
-                    <div class="thumbnail">
+                <div class="page-border">
+                    <div class="thumbnail" style="min-height: 525px;max-height:525px;">
                         <h2 class="text-center h2-bg">{{ puppy.name }}</h2>
                         <hr>
                         <a href="{{ puppy.homepage }}" target="_blank"><img class="img-bor" src="http://api.thumbalizr.com/?url={{ puppy.homepage }}&width=350&api_key=7VeQ35JnLwR4fYRt2QgvhiVdemLqfz"></a>
                         <hr>
                         <div class="caption">
-                            <ul class="list-unstyled">
+                            <ul class="list-unstyled text-center">
                                 <li><strong>source:&nbsp;</strong><a href="{{ puppy.html_url }}" target="_blank">Link to github source</a></li>
                                 <li><strong>url:&nbsp;</strong> <a href="{{ puppy.homepage }}" target="_blank">{{ puppy.homepage }}</a></li>
                                 <li><strong>description:&nbsp;</strong>{{ puppy.description }}</li>
@@ -39,8 +40,10 @@
                         </div>
                     </div>
                 </div>
+                </div>
                 <div class="col-md-5 col-md-offset-1">
-                    <div class="thumbnail">
+                <div class="page-border">
+                    <div class="thumbnail" style="min-height: 525px;max-height:525px;">
                         <h2 class="text-center">{{ wiki.name }}</h2>
                         <hr>
                         <a href="{{ wiki.homepage }}" target="_blank"><img class="img-bor" src="http://api.thumbalizr.com/?url={{ wiki.homepage }}&width=350&api_key=7VeQ35JnLwR4fYRt2QgvhiVdemLqfz"></a>
@@ -54,10 +57,12 @@
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-5 col-md-offset-1">
-                    <div class="thumbnail">
+                <div class="page-border">
+                    <div class="thumbnail" style="min-height: 525px;max-height:525px;">
                         <h2 class="text-center">{{ composite.name }}</h2>
                         <hr>
                         <a href="{{ composite.homepage }}" target="_blank"><img class="img-bor" src="http://api.thumbalizr.com/?url={{ composite.homepage }}&width=350&api_key=7VeQ35JnLwR4fYRt2QgvhiVdemLqfz"></a>
@@ -70,9 +75,11 @@
                             </ul>
                         </div>
                     </div>
+                    </div>
                 </div>
                 <div class="col-md-5 col-md-offset-1">
-                    <div class="thumbnail">
+                <div class="page-border">
+                    <div class="thumbnail" style="min-height: 525px;max-height:525px;">
                         <h2 class="text-center">{{ portfolio.name }}</h2>
                         <hr>
                         <a href="{{ portfolio.homepage }}" target="_blank"><img class="img-bor" src="http://api.thumbalizr.com/?url={{ portfolio.homepage }}&width=350&api_key=7VeQ35JnLwR4fYRt2QgvhiVdemLqfz"></a>
@@ -85,6 +92,7 @@
                             </ul>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
             <div class="row">

@@ -1,19 +1,30 @@
 html, body, h1, p {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Lato', sans-serif;
+}
+body {
+    background-color: #e9ebee;
+}
+.page-border {
+    background-color: #fff;
 }
 h1 {
     margin-left: 200px;
+}
+a {
+    color: #A1310E !important;
 }
 img {
     border-radius: 15%;
     float: left;
     border: 1px solid black;
-    box-shadow: 1px 1px 1px;
+    box-shadow: 1px 1px 1px #999999;
 }
 .img-bor {
+    float:none;
     border: 1px solid #eee;
     padding-right: 0px;
     border-radius: 5%;
+    box-shadow: 1px 1px 1px #999999;
 }
 img.btn-img {
     border:none;
@@ -24,6 +35,21 @@ p {
     font-size: 18px;
     line-height: 32px;
     margin: 25px 0;
+}
+.btn-primary {
+    color:#fff !important;
+    background-color: #94142b !important;
+    border-color: black !important;
+}
+.heading-font, p {
+    font-weight: 300;
+}
+.firstname {
+    font-weight: 700;
+    color: #A1310E;
+}
+.lastname {
+    font-weight: 300;
 }
 .quote {
     font-size: 14px !important;
@@ -68,6 +94,7 @@ ul {
 #myip > div > table {
     margin-bottom: 0;
 }
+
 @media screen and (max-width: 550px) {
     h1 {
         font-size: 24px;
