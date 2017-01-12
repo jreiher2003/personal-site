@@ -63,7 +63,7 @@ def quotes():
 def profiles():
     """ grabs my github profile api"""
     return requests.get("https://api.github.com/users/jreiher2003", headers=headers).json()
-
+profile = profiles()
 
 def find_current_weather(params):
     """ Open weather map api.  change params for different search"""
@@ -110,7 +110,6 @@ def find_user_sunset_sunrise():
 
 @app.route('/')
 def hello_world():
-    profile = profiles()
     user_agent = find_browers_os_info()
     user_loc = find_my_loc()
     user_weather = find_user_weather()
@@ -135,8 +134,8 @@ def hello_world():
         wind_direction=wind_direction
         )
 
-@cache.cached(timeout=60*5, key_prefix="projects")
 @app.route("/projects")
+@cache.cached(timeout=60*5, key_prefix="projects")
 def projects():
     quote = quotes()
     peer = requests.get("https://api.github.com/repos/jreiher2003/peer_flask", headers=headers).json()
