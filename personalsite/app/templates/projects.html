@@ -1,126 +1,147 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="author" content="Jeff Reiher">
-    <meta name='copyright' content="DSAC LLC">
-    <meta name='language' content="english">
-    <meta name="robots" content="index, follow">
-    <title>Jeff Reiher</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="static/styles.css">
-    </head>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="author" content="Jeff Reiher">
+  <meta name='copyright' content="DSAC LLC">
+  <meta name='language' content="english">
+  <meta name="robots" content="index, follow">
+  <title>Jeff Reiher</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="static/styles.css">
+</head>
 <body>
-<div class="container">
+  <div class="container">
     <div class="row">
-        <div class="col-md-12">
-            <h2 class="text-center">Project section of site <p class="pull-right"><a href="{{ url_for('hello_world') }}"><i class="fa fa-undo" style="font-size:20px;" aria-hidden="true"></i>&nbsp;&nbsp;back</a></h2>
+      <div class="col-md-12">
+        <h2 class="text-center">Project section of site <p class="pull-right"><a href="{{ url_for('hello_world') }}"><i class="fa fa-undo" style="font-size:20px;" aria-hidden="true"></i>&nbsp;&nbsp;back</a></h2>
+        <hr>
+        <div class="row">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="page-border">
+              <div class="thumbnail" style="min-height: 555px;">
+                <h2 class="text-center h2-bg">{{ puppy.name }}</h2>
+                <hr>
+                <a href="{{ puppy.homepage }}" target="_blank"><img class="img-bor" src="http://api.thumbalizr.com/?url={{ puppy.homepage }}&width=350&api_key=7VeQ35JnLwR4fYRt2QgvhiVdemLqfz"></a>
+                <hr>
+                <div class="caption">
+                  <ul class="list-unstyled text-left" style="margin-left:30px;">
+                    <li><strong>source:&nbsp;</strong><a href="{{ puppy.html_url }}" target="_blank">Link to github source</a></li>
+                    <li><strong>url:&nbsp;</strong> <a href="{{ puppy.homepage }}" target="_blank">{{ puppy.homepage }}</a></li>
+                    <li><strong>description:&nbsp;</strong>{{ puppy.description }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 col-md-offset-1">
+            <div class="page-border">
+              <div class="thumbnail" style="min-height: 545px;">
+                <h2 class="text-center">{{ peer.name }}</h2>
+                <hr>
+                <a href="{{ wiki.homepage }}" target="_blank"><img class="img-bor" src="http://api.thumbalizr.com/?url={{ peer.homepage }}&width=350&api_key=7VeQ35JnLwR4fYRt2QgvhiVdemLqfz"></a>
+                <hr>
+                <div class="caption">
+                  <ul class="list-unstyled text-left" style="margin-left:30px;">
+                    <li><strong>source:&nbsp;</strong><a href="{{ wiki.html_url }}" target="_blank">Link to github source</a></li>
+                    <li><strong>url:&nbsp;</strong><a href="{{ wiki.homepage }}" target="_blank">{{ peer.homepage }}</a></li>
+                    <li><strong>description:&nbsp;</strong>{{ peer.description }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="page-border">
+              <div class="thumbnail" style="min-height: 545px;">
+                <h2 class="text-center">{{ composite.name }}</h2>
+                <hr>
+                <a href="{{ composite.homepage }}" target="_blank"><img class="img-bor" src="http://api.thumbalizr.com/?url={{ composite.homepage }}&width=350&api_key=7VeQ35JnLwR4fYRt2QgvhiVdemLqfz"></a>
+                <hr>
+                <div class="caption">
+                  <ul class="list-unstyled text-left" style="margin-left:30px;">
+                    <li><strong>source:&nbsp;</strong><a href="{{ composite.html_url }}" target="_blank">Link to github source</a></li>
+                    <li><strong>url:&nbsp;</strong><a href="{{ composite.homepage }}" target="_blank">{{ composite.homepage }}</a></li>
+                    <li><strong>description:&nbsp;</strong>{{ composite.description }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 col-md-offset-1">
+            <div class="page-border">
+              <div class="thumbnail" style="min-height:545px;">
+                <h2 class="text-center">{{ portfolio.name }}</h2>
+                <hr>
+                <a href="{{ portfolio.homepage }}" target="_blank"><img class="img-bor" src="http://api.thumbalizr.com/?url={{ portfolio.homepage }}&width=350&api_key=7VeQ35JnLwR4fYRt2QgvhiVdemLqfz"></a>
+                <hr>
+                <div class="caption">
+                  <ul class="list-unstyled text-left" style="margin-left:30px;">
+                    <li><strong>source:&nbsp;</strong><a href="{{ portfolio.html_url }}" target="_blank">Link to github source</a></li>
+                    <li><strong>url:&nbsp;</strong><a href="{{ portfolio.homepage }}" target="_blank">{{ portfolio.homepage }}</a></li>
+                    <li><strong>description:&nbsp;</strong>{{ portfolio.description }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="page-border">
+              <div class="thumbnail" style="min-height: 545px;">
+                <h2 class="text-center">{{ wiki.name }}</h2>
+                <hr>
+                <a href="{{ wiki.homepage }}" target="_blank"><img class="img-bor" src="http://api.thumbalizr.com/?url={{ wiki.homepage }}&width=350&api_key=7VeQ35JnLwR4fYRt2QgvhiVdemLqfz"></a>
+                <hr>
+                <div class="caption">
+                  <ul class="list-unstyled text-left" style="margin-left:30px;">
+                    <li><strong>source:&nbsp;</strong><a href="{{ wiki.html_url }}" target="_blank">Link to github source</a></li>
+                    <li><strong>url:&nbsp;</strong><a href="{{ wiki.homepage }}" target="_blank">{{ wiki.homepage }}</a></li>
+                    <li><strong>description:&nbsp;</strong>{{ wiki.description }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 col-md-offset-1"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8 col-md-offset-1">
+            <br>
             <hr>
-            <div class="row">
-                <div class="col-md-5 col-md-offset-1">
-                <div class="page-border">
-                    <div class="thumbnail" style="min-height: 555px;">
-                        <h2 class="text-center h2-bg">{{ puppy.name }}</h2>
-                        <hr>
-                        <a href="{{ puppy.homepage }}" target="_blank"><img class="img-bor" src="http://api.thumbalizr.com/?url={{ puppy.homepage }}&width=350&api_key=7VeQ35JnLwR4fYRt2QgvhiVdemLqfz"></a>
-                        <hr>
-                        <div class="caption">
-                            <ul class="list-unstyled text-center">
-                                <li><strong>source:&nbsp;</strong><a href="{{ puppy.html_url }}" target="_blank">Link to github source</a></li>
-                                <li><strong>url:&nbsp;</strong> <a href="{{ puppy.homepage }}" target="_blank">{{ puppy.homepage }}</a></li>
-                                <li><strong>description:&nbsp;</strong>{{ puppy.description }}</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <div class="col-md-5 col-md-offset-1">
-                <div class="page-border">
-                    <div class="thumbnail" style="min-height: 545px;">
-                        <h2 class="text-center">{{ wiki.name }}</h2>
-                        <hr>
-                        <a href="{{ wiki.homepage }}" target="_blank"><img class="img-bor" src="http://api.thumbalizr.com/?url={{ wiki.homepage }}&width=350&api_key=7VeQ35JnLwR4fYRt2QgvhiVdemLqfz"></a>
-                        <hr>
-                        <div class="caption">
-                            <ul class="list-unstyled">
-                                <li><strong>source:&nbsp;</strong><a href="{{ wiki.html_url }}" target="_blank">Link to github source</a></li>
-                                <li><strong>url:&nbsp;</strong><a href="{{ wiki.homepage }}" target="_blank">{{ wiki.homepage }}</a></li>
-                                <li><strong>description:&nbsp;</strong>{{ wiki.description }}</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-5 col-md-offset-1">
-                <div class="page-border">
-                    <div class="thumbnail" style="min-height: 545px;">
-                        <h2 class="text-center">{{ composite.name }}</h2>
-                        <hr>
-                        <a href="{{ composite.homepage }}" target="_blank"><img class="img-bor" src="http://api.thumbalizr.com/?url={{ composite.homepage }}&width=350&api_key=7VeQ35JnLwR4fYRt2QgvhiVdemLqfz"></a>
-                        <hr>
-                        <div class="caption">
-                            <ul class="list-unstyled">
-                                <li><strong>source:&nbsp;</strong><a href="{{ composite.html_url }}" target="_blank">Link to github source</a></li>
-                                <li><strong>url:&nbsp;</strong><a href="{{ composite.homepage }}" target="_blank">{{ composite.homepage }}</a></li>
-                                <li><strong>description:&nbsp;</strong>{{ composite.description }}</li>
-                            </ul>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                <div class="col-md-5 col-md-offset-1">
-                <div class="page-border">
-                    <div class="thumbnail" style="min-height:545px;">
-                        <h2 class="text-center">{{ portfolio.name }}</h2>
-                        <hr>
-                        <a href="{{ portfolio.homepage }}" target="_blank"><img class="img-bor" src="http://api.thumbalizr.com/?url={{ portfolio.homepage }}&width=350&api_key=7VeQ35JnLwR4fYRt2QgvhiVdemLqfz"></a>
-                        <hr>
-                        <div class="caption">
-                            <ul class="list-unstyled">
-                                <li><strong>source:&nbsp;</strong><a href="{{ portfolio.html_url }}" target="_blank">Link to github source</a></li>
-                                <li><strong>url:&nbsp;</strong><a href="{{ portfolio.homepage }}" target="_blank">{{ portfolio.homepage }}</a></li>
-                                <li><strong>description:&nbsp;</strong>{{ portfolio.description }}</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8 col-md-offset-1">
-                    <br>
-                    <hr>
-                    <blockquote>
-                        <p>{{ quote.quote }}</p>
-                       <footer><cite>{{ quote.author }}</cite></footer>
-                    </blockquote>
-                </div>
-                
-            </div>
+            <blockquote>
+              <p>{{ quote.quote }}</p>
+              <footer><cite>{{ quote.author }}</cite></footer>
+            </blockquote>
+          </div>
 
         </div>
-    </div>
-</div>
 
-<script>
+      </div>
+    </div>
+  </div>
+
+  <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-68828092-1', 'auto');
   ga('send', 'pageview');
-</script> 
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-        
-    </body>
+  </script> 
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+</body>
 </html>

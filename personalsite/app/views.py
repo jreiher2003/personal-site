@@ -4,7 +4,7 @@ import time
 from datetime import datetime
 import pytz
 import requests
-from app import app
+from app import app, cache
 from flask import render_template, url_for, redirect, jsonify, request 
 from user_agents import parse
 import googlemaps 
@@ -59,10 +59,11 @@ def quotes():
     print rand_pic(len(quote)),"chosen quote by index"
     return quote[rand_pic(len(quote))]
 
+@cache.cached(timeout=60*5, key_prefix="profile")
 def profiles():
     """ grabs my github profile api"""
     return requests.get("https://api.github.com/users/jreiher2003", headers=headers).json()
-profile = profiles()
+
 
 def find_current_weather(params):
     """ Open weather map api.  change params for different search"""
@@ -106,8 +107,10 @@ def find_user_sunset_sunrise():
     current_local_time = ct.astimezone(pytz.timezone(local_tz_str))
     return sunrise,sunset, current_local_time, local_name_tz, local_tz_str, wind_degree
 
+
 @app.route('/')
 def hello_world():
+    profile = profiles()
     user_agent = find_browers_os_info()
     user_loc = find_my_loc()
     user_weather = find_user_weather()
@@ -132,15 +135,18 @@ def hello_world():
         wind_direction=wind_direction
         )
 
+@cache.cached(timeout=60*5, key_prefix="projects")
 @app.route("/projects")
 def projects():
     quote = quotes()
+    peer = requests.get("https://api.github.com/repos/jreiher2003/peer_flask", headers=headers).json()
     puppy = requests.get("https://api.github.com/repos/jreiher2003/Puppy-Adoption", headers=headers).json()
     portfolio = requests.get("https://api.github.com/repos/jreiher2003/Jeff-Portfolio", headers=headers).json()
     wiki = requests.get("https://api.github.com/repos/jreiher2003/Wiki", headers=headers).json()
     composite = requests.get("https://api.github.com/repos/jreiher2003/Composite", headers=headers).json()
     return render_template(
         "projects.html",
+        peer=peer,
         puppy=puppy,
         portfolio=portfolio,
         wiki=wiki,

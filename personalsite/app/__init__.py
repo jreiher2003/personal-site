@@ -1,9 +1,11 @@
 import os
 import datetime
 from flask import Flask 
+from flask_caching import Cache
 
 app = Flask(__name__) 
 app.config.from_object(os.environ['APP_SETTINGS'])
+cache = Cache(app)
 
 from app import views
 
