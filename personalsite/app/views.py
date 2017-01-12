@@ -77,8 +77,7 @@ def find_current_weather(params):
 def find_user_weather():
     lat,lon = find_lon_lat()
     return find_current_weather("weather?lat=%s&lon=%s&units=imperial&" % (lat,lon))
-# http://api.openweathermap.org/data/2.5/forecast?lat=26.9554&lon=-82.2987&mode=json&units=imperial&appid=d0ee3e692048455da290c0738b4ea751
-# http://api.openweathermap.org/data/2.5/forcast?lat=26.9554&lon=-82.2987&mode=json&units=imperial&APPID=d0ee3e692048455da290c0738b4ea751
+
 def find_user_5_day_forcast():
     lat,lon = find_lon_lat() 
     return find_current_weather("forecast/?lat=%s&lon=%s&mode=json&units=imperial&" % (lat,lon))
@@ -140,14 +139,14 @@ def projects():
     quote = quotes()
     peer = requests.get("https://api.github.com/repos/jreiher2003/peer_flask", headers=headers).json()
     puppy = requests.get("https://api.github.com/repos/jreiher2003/Puppy-Adoption", headers=headers).json()
-    portfolio = requests.get("https://api.github.com/repos/jreiher2003/Jeff-Portfolio", headers=headers).json()
+    blog = requests.get("https://api.github.com/repos/jreiher2003/Blog-Jeff", headers=headers).json()
     wiki = requests.get("https://api.github.com/repos/jreiher2003/Wiki", headers=headers).json()
     composite = requests.get("https://api.github.com/repos/jreiher2003/Composite", headers=headers).json()
     return render_template(
         "projects.html",
         peer=peer,
         puppy=puppy,
-        portfolio=portfolio,
+        blog=blog,
         wiki=wiki,
         composite=composite,
         quote = quote
