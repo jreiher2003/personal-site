@@ -59,7 +59,7 @@ def quotes():
     print rand_pic(len(quote)),"chosen quote by index"
     return quote[rand_pic(len(quote))]
 
-@cache.cached(timeout=60*5, key_prefix="profile")
+@cache.cached(timeout=60*60, key_prefix="profile")
 def profiles():
     """ grabs my github profile api"""
     return requests.get("https://api.github.com/users/jreiher2003", headers=headers).json()
